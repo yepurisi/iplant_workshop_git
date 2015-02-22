@@ -29,3 +29,27 @@ dim(d2)
 
 diamondPlot <- ggplot(data=d2, aes(carat,price, color=color)) + geom_point(size=2)
 diamondPlot
+
+library(MASS)
+birthPlot <- ggplot(birthwt, aes(factor(race), bwt)) + geom_boxplot()
+birthPlot
+
+facetGridPlot <- ggplot(iris, aes(Sepal.Length, Sepal.Width, color=Species)) +
+   geom_point() +
+   facet_grid(Species ~ .)
+facetGridPlot
+
+ggplot(iris, aes(Sepal.Length, Sepal.Width, color=Species)) +
+   geom_point() +
+   facet_wrap( ~ Species)
+
+library(RColorBrewer)
+df <- melt(iris, id.vars="Species")
+colorBrewPlot <- ggplot(df, aes(Species, value, fill=variable)) + 
+   geom_bar(stat="identity", position="dodge") +
+   scale_fill_brewer(palette = "Set1")
+colorBrewPlot
+
+ggplot(df, aes(Species, value, fill=variable)) + 
+   geom_bar(stat="identity", position="dodge") +
+   scale_fill_manual(values=c("green", "red", "blue", "yellow"))
